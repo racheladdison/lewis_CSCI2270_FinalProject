@@ -1,3 +1,4 @@
 # lewis_CSCI2270_FinalProject
-# Hi everyone.
-# This is Rachel Lewis
+# Housing Search Network
+
+This is a cool program.
