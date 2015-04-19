@@ -17,5 +17,7 @@ Group Members:
 Rachel Lewis
 
 Contributors:
+Not sure who the contributors will be yet.
 
 Open Issues/Bugs:
+I will figure this out when I write my program and test it.
