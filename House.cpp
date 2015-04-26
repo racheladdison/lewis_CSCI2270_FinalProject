@@ -20,7 +20,23 @@ Houses::~Houses()
     //dtor
 }
 
-//Displays all the addresses of the houses in the linked list
+/*
+Function prototype:
+void Houses::displayHouses()
+
+Function description:
+This goes through the linked list of houses and prints all of the
+addresses and street names.
+
+Example:
+Houses h;
+h.displayHouses();
+
+Precondition: A linked list of houses must already be established. These
+houses must have addresses and street names.
+Postcondition: A printed list will display, but nothing about the structure
+changes.
+*/
 void Houses::displayHouses() {
     house *tracker = head;
     while(tracker->next != NULL) {
@@ -31,15 +47,49 @@ void Houses::displayHouses() {
 }
 
 
-//Function to easily display the menu of selections for the user
+/*
+Function prototype:
+void Houses::displayMenu()
+
+Function description:
+This displays a menu that will be used by the user to navigate through
+the program set up to use these functions to navigate the list of homes.
+
+Example:
+House h;
+h.displayMenu()
+
+Precondition: The iostream library must be included.
+Postcondition: The menu is printed but no change happens to the structure
+of the program.
+*/
 void Houses::displayMenu() {
     std::cout << "1. Enter Requests" << std::endl;
     std::cout << "2. Enter New Listing" << std::endl;
     std::cout << "7. Quit" << std::endl;
 }
 
-//Searches for a house that meets the requests of the user
-//Returns NULL if such a house does not exist
+/*
+Function prototype:
+house Houses::searchHouses(int bed, int bath, int sqrfeet, std::string type,
+                           std::string neighborhood, int maxPrice)
+
+Function description:
+This searches through the linked list of houses for a house to meet the
+parameters of what the user is looking for. If a house is found meeting
+the criteria, it will be returned. If such a house does not exist, NULL
+will be returned.
+
+Example:
+House h;
+h.searchHouses(2, 2, 1000, apartment, bear creek, 2000)
+
+Precondition: There must be a linked list of houses with the last house
+of the list pointing to NULL. These houses should have all variables of
+their structure filled out.
+Postcondition: A house meeting the description is returned so the user can
+see the information pertaining to the house.
+*/
 house Houses::searchHouses(int bed, int bath, int sqrfeet, std::string type, std::string neighborhood, int maxPrice) {
     house *tracker = head;
     house *found = NULL;
@@ -52,7 +102,27 @@ house Houses::searchHouses(int bed, int bath, int sqrfeet, std::string type, std
     return found;
 }
 
-//Creates a new house and adds it to the linked list of houses
+/*
+Function prototype:
+void Houses::newHouse(int address, std::string street, int bed, int bath,
+                      int sqrfeet, std::string type, std::string neighborhood,
+                      int price)
+
+Function description:
+This creates a new house and adds all of the information from the input
+into the house structure. It then adds the house to the end of the linked
+list ensuring if there are similar houses, older additions will be found
+first.
+
+Example:
+House h;
+h.newHouse(277, "Institute", 5, 3, 4000, "house", "gold hill", 400000)
+
+Precondition: A head and tail of a linked list of house structs established.
+Variables that are being passed in are needed.
+Postcondition: Memory is allocated for a new house struct. This house
+is then added to the end of the linked list that already exists.
+*/
 void Houses::newHouse(int address, std::string street, int bed, int bath, int sqrfeet, std::string type, std::string neighborhood, int price) {
     house *newH = new house;
     newH->address = address;
@@ -70,7 +140,26 @@ void Houses::newHouse(int address, std::string street, int bed, int bath, int sq
     displayHouses();
 }
 
-//Allows a person to search for a certain address to access its information
+/*
+Function prototype:
+house Houses::findHouse(int address, std::string street)
+
+Function description:
+This allows the user to find a house based on the address and street. If
+a user has already found the house or is interested in one they have heard
+of this is a more efficient way to find it without searching with all the
+criteria of searchHouses. This will return a house if the house exists and
+NULL if it does not exist.
+
+Example:
+Houses h;
+h.findHouse(277, "Institute")
+
+Precondition: Linked list of house structs with address and street variables
+filled in.
+Postcondition: A house struct is returned, but nothing in the structure of
+the program is changed.
+*/
 house Houses::findHouse(int address, std::string street) {
     house *tracker = head;
     house *found = NULL;
@@ -83,8 +172,21 @@ house Houses::findHouse(int address, std::string street) {
     return found;
 }
 
-//Allows realtors to add notes about the home such as features(fireplaces,
-//yards, porches, basements).
+/*
+Function prototype:
+void Houses::addNote(std::string note)
+
+Function description:
+This function allows realtors to add notes to the struct of the house in
+order to give details that are not variables in the struct already such
+as fireplaces, porches, and yards.
+
+Example:
+Houses h;
+h.addNote("Great fireplace")
+
+Precondition:
+*/
 void Houses::addNote(std::string toBe) {
 
 }
@@ -100,4 +202,23 @@ void Houses::printOneHouse(int address, std::string street) {
     std::cout << "Neighborhood: " << toPrint->neighborhood << std::endl;
     std::cout << "Price: " << toPrint->price << std::endl;
     std::cout << "Number Interested: " << toPrint->numberInterested << std::endl;
+}
+
+void Houses::deleteHouse(int address, std::string street) {
+    house *tracker = head;
+    while(tracker != NULL) {
+        if(tracker->address == address && tracker->street == street) {
+            break;
+        }
+        tracker = tracker->next;
+    }
+    if(tracker == NULL) {
+        std::cout << "House not found." << endl;
+    }
+    else {
+        temp = tracker->previous;
+        temp->next = tracker->next;
+        tracker->previous = temp;
+        delete tracker;
+    }
 }
