@@ -185,13 +185,32 @@ Example:
 Houses h;
 h.addNote("Great fireplace")
 
-Precondition:
+Precondition: The house parameter that is in the function must already
+exist.
+Postconditin: The note section of that house is now updated to the note
+that was passed in.
 */
-void Houses::addNote(std::string toBe) {
+void Houses::addNote(house toBe, std::string note) {
 
 }
 
-//Prints all information having to do with the house address
+/*
+Function prototype:
+void Houses::printOneHouse(int address, std::string street)
+
+Function description:
+This finds a house based on the address and street and prints out its
+information so the user can see the details of the house.
+
+Example:
+Houses h;
+h.printOneHouse(277, "Institute")
+
+Precondition: A linked list of house structs with a head and a tail with
+a next pointer that points to NULL.
+Postcondition: The structure of the program will not change. The information
+concerning the house will be printed.
+*/
 void Houses::printOneHouse(int address, std::string street) {
     house toPrint = findHouse(address, street);
     std::cout << toPrint->address << " " << toPrint->street << std::endl;
@@ -204,6 +223,25 @@ void Houses::printOneHouse(int address, std::string street) {
     std::cout << "Number Interested: " << toPrint->numberInterested << std::endl;
 }
 
+/*
+Function prototype:
+void Houses::deleteHouse(int address, std::string street)
+
+Function Description:
+This deletes a house if it has been bought or if the seller no longer is
+interested in selling. The realtor can use this function to take the listing
+out of the linked list. If the house does not exist a statement will be
+printed saying so.
+
+Example:
+Houses h;
+h.deleteHouse(277, "Institute)
+
+Precondition: A linked list with a head and a tail with a next pointer
+pointing to NULL.
+Postcondition: House has been deleted from the linked list and the memory
+associated with the house has been freed.
+*/
 void Houses::deleteHouse(int address, std::string street) {
     house *tracker = head;
     while(tracker != NULL) {
