@@ -11,7 +11,7 @@ struct house {
     std::string type;
     std::string neighborhood;
     int price;
-    int numberInterested;
+    int numberInterested = 0;
     std::string notes;
     house *next;
     house *previous;
@@ -23,18 +23,18 @@ class Houses
         Houses();
         virtual ~Houses();
         void displayMenu();
-        house searchHouses(int bed, int bath, int sqrfeet, std::string type, std::string neighborhood,
+        void displayHouses();
+        house* searchHouses(int bed, int bath, int sqrfeet, std::string type, std::string neighborhood,
                           int maxPrice);
         void newHouse(int address, std::string street, int bed, int bath, int sqrfeet, std::string type, std::string neighborhood, int price);
-        house findHouse(int address, std::string street);
-        void addNote(std::string toBeAdded);
+        house* findHouse(int address, std::string street);
+        void addNote(house *toBe, std::string toBeAdded);
         void printOneHouse(int address, std::string street);
         void deleteHouse(int address, std::string street);
     protected:
     private:
         house *head;
         house *tail;
-        void displayHouses();
 };
 
 #endif // HOUSES_H
