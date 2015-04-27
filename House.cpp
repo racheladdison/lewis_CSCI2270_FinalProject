@@ -5,14 +5,28 @@ Houses::Houses()
 {
     //ctor
     head = new house;
-    head->name = "Rico";
+    head->address = 1058;
+    head->street = "virgor";
     head->bed = 1;
     head->bath = 1;
+    head->sqrfeet = 1000;
     head->type = "apartment";
-    head->neighborhood = "cm";
-    head->price = 50,000;
+    head->neighborhood = "cheyenne mountain";
+    head->price = 50000;
     head->previous = NULL;
-    head->next = NULL;
+    head->next = tail;
+
+    tail = new house;
+    tail->address = 277;
+    tail->street = "raven mine";
+    tail->bed = 5;
+    tail->bath = 4;
+    tail->sqrfeet = 4000;
+    tail->type = "house";
+    tail->neighborhood = "gold hill mesa";
+    tail->price = 450000;
+    tail->next = NULL;
+    tail->previous = head;
 }
 
 Houses::~Houses()
@@ -66,6 +80,10 @@ of the program.
 void Houses::displayMenu() {
     std::cout << "1. Enter Requests" << std::endl;
     std::cout << "2. Enter New Listing" << std::endl;
+    std::cout << "3. Find House by Address and Street" << std::endl;
+    std::cout << "4. Add Note" << std::endl;
+    std::cout << "5. Print House Details" << std::endl;
+    std::cout << "6. Delete House" << std::endl;
     std::cout << "7. Quit" << std::endl;
 }
 
@@ -81,7 +99,7 @@ the criteria, it will be returned. If such a house does not exist, NULL
 will be returned.
 
 Example:
-House h;
+Houses h;
 h.searchHouses(2, 2, 1000, apartment, bear creek, 2000)
 
 Precondition: There must be a linked list of houses with the last house
@@ -90,7 +108,7 @@ their structure filled out.
 Postcondition: A house meeting the description is returned so the user can
 see the information pertaining to the house.
 */
-house Houses::searchHouses(int bed, int bath, int sqrfeet, std::string type, std::string neighborhood, int maxPrice) {
+house* Houses::searchHouses(int bed, int bath, int sqrfeet, std::string type, std::string neighborhood, int maxPrice) {
     house *tracker = head;
     house *found = NULL;
     while(tracker != NULL) {
@@ -115,7 +133,7 @@ list ensuring if there are similar houses, older additions will be found
 first.
 
 Example:
-House h;
+Houses h;
 h.newHouse(277, "Institute", 5, 3, 4000, "house", "gold hill", 400000)
 
 Precondition: A head and tail of a linked list of house structs established.
@@ -160,7 +178,7 @@ filled in.
 Postcondition: A house struct is returned, but nothing in the structure of
 the program is changed.
 */
-house Houses::findHouse(int address, std::string street) {
+house* Houses::findHouse(int address, std::string street) {
     house *tracker = head;
     house *found = NULL;
     while(tracker != NULL) {
@@ -190,7 +208,7 @@ exist.
 Postconditin: The note section of that house is now updated to the note
 that was passed in.
 */
-void Houses::addNote(house toBe, std::string note) {
+void Houses::addNote(house *toBe, std::string note) {
 
 }
 
@@ -212,7 +230,7 @@ Postcondition: The structure of the program will not change. The information
 concerning the house will be printed.
 */
 void Houses::printOneHouse(int address, std::string street) {
-    house toPrint = findHouse(address, street);
+    house *toPrint = findHouse(address, street);
     std::cout << toPrint->address << " " << toPrint->street << std::endl;
     std::cout << "Beds: " << toPrint->bed << std::endl;
     std::cout << "Baths: " << toPrint->bath << std::endl;
@@ -251,10 +269,10 @@ void Houses::deleteHouse(int address, std::string street) {
         tracker = tracker->next;
     }
     if(tracker == NULL) {
-        std::cout << "House not found." << endl;
+        std::cout << "House not found." << std::endl;
     }
     else {
-        temp = tracker->previous;
+        house *temp = tracker->previous;
         temp->next = tracker->next;
         tracker->previous = temp;
         delete tracker;
