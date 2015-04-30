@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Houses.h"
-
+#include <climits>
+#include <stdexcept>
 using namespace std;
 
 int main()
@@ -8,10 +9,10 @@ int main()
     //
     //Housing search program
     //
-
     Houses h;
     //Have a menu
     int quit = 0;
+    string input = "";
     while(quit != 7) {
         h.displayMenu();
         cin >> ws;
@@ -19,14 +20,59 @@ int main()
         //Asks for what the user wants in a house
         if(quit == 1) {
             int bed = 0;
+            
             cout << "How many bedrooms?" << endl;
-            cin >> bed;
+            getline(cin >> ws, input);
+			 try{
+					bed = stoi(input);
+				}
+				catch(invalid_argument& e){
+					bed = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            //if(input <= INT_MAX && input >= 0)
+            //{
+			//	cin >> bed;
+			//}
+			//else if(input <= 0 )
+			//{
+			//	cout<<"Make sure your value is a positive integer."<<endl;
+			//	break;
+			//}
+			
             int bath = 0;
             cout << "How many bathrooms?" << endl;
             cin >> bath;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					bath = stoi(input);
+				}
+				catch(invalid_argument& e){
+					bath = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+				
+				
             int sqr = 0;
             cout << "Enter square footage." << endl;
             cin >> sqr;
+           
+           
+            getline(cin >> ws, input);
+			 try{
+					sqr = stoi(input);
+				}
+				catch(invalid_argument& e){
+					sqr = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+				
+				
             string neighborhood = "";
             cout << "Which neighborhood?" << endl;
             cin >> neighborhood;
@@ -36,6 +82,17 @@ int main()
             int maxPrice = 0;
             cout << "What is your maximum budget?" << endl;
             cin >> maxPrice;
+
+
+            getline(cin >> ws, input);
+			 try{
+					bed = stoi(input);
+				}
+				catch(invalid_argument& e){
+					bed = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
             h.searchHouses(bed, bath, sqr, type, neighborhood, maxPrice);
         }
 
@@ -44,18 +101,70 @@ int main()
             int address = 0;
             cout << "Enter address number." << endl;
             cin >> address;
+            
+            getline(cin >> ws, input);
+			 try{
+					address = stoi(input);
+				}
+				catch(invalid_argument& e){
+					address = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string street = "";
             cout << "Enter name of street." << endl;
             cin >> street;
+            
             int bed = 0;
             cout << "Enter number of bedrooms." << endl;
             cin >> bed;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					bed = stoi(input);
+				}
+				catch(invalid_argument& e){
+					bed = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             int bath = 0;
             cout << "Enter number of bathrooms." << endl;
             cin >> bath;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					bath = stoi(input);
+				}
+				catch(invalid_argument& e){
+					bath = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             int sqr = 0;
             cout << "Enter square footage." << endl;
             cin >> sqr;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					sqr = stoi(input);
+				}
+				catch(invalid_argument& e){
+					sqr = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string type = "";
             cout << "Enter type of house." << endl;
             cin >> type;
@@ -65,6 +174,20 @@ int main()
             int price = 0;
             cout << "Enter price." << endl;
             cin >> price;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					price = stoi(input);
+				}
+				catch(invalid_argument& e){
+					price = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
+            
             h.newHouse(address, street, bed, bath, sqr, type, neighborhood, price);
         }
 
@@ -73,6 +196,19 @@ int main()
             int address = 0;
             cout << "Enter address." << endl;
             cin >> address;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					address = stoi(input);
+				}
+				catch(invalid_argument& e){
+					address = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string street = " ";
             cout << "Enter street." << endl;
             cin >> street;
@@ -91,6 +227,19 @@ int main()
             int address = 0;
             cout << "Enter address." << endl;
             cin >> address;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					address = stoi(input);
+				}
+				catch(invalid_argument& e){
+					address = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string street;
             cout << "Enter street." << endl;
             cin >> street;
@@ -106,6 +255,19 @@ int main()
             int address = 0;
             cout << "Enter address." << endl;
             cin >> address;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					address = stoi(input);
+				}
+				catch(invalid_argument& e){
+					address = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string street;
             cout << "Enter street name." << endl;
             cin >> street;
@@ -117,6 +279,19 @@ int main()
             int address = 0;
             cout << "Enter address to be deleted." << endl;
             cin >> address;
+            
+            
+            getline(cin >> ws, input);
+			 try{
+					address = stoi(input);
+				}
+				catch(invalid_argument& e){
+					address = 8;
+					cout<<"Enter an positive integer."<<endl;
+					break;
+				}
+            
+            
             string street;
             cout << "Enter street of house to be deleted." << endl;
             cin >> street;
