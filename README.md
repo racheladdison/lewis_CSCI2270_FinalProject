@@ -17,7 +17,9 @@ Group Members:
 Rachel Lewis
 
 Contributors:
-Not sure who the contributors will be yet.
+Michael Condon (SuperialCondon)
 
 Open Issues/Bugs:
 I will figure this out when I write my program and test it.
+**Resolved**: If the user initially selects the quit option without doing anything else, the program prints the address of the head and then seg-faults. For example: Menu displays, user enters "7" for quit, prints "1058 virgor", then seg faults.
+		Fixed by changing the head->next pointer in the house constructor

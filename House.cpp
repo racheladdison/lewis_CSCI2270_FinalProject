@@ -14,7 +14,11 @@ Houses::Houses()
     head->neighborhood = "cheyenne mountain";
     head->price = 50000;
     head->previous = NULL;
-    head->next = tail;
+    //head->next = tail; Note: defining the head->next = tail here will
+    //result in a seg fault. The head->next is being set to a place in
+    //memory that isnt really there yet. To fix the seg fault when quitting
+    //issue I mentioned, I moved this line of code to line 33. Which sets
+    //the head->next to tail which is now a defined spot in memory.
 
     tail = new house;
     tail->address = 277;
@@ -27,6 +31,7 @@ Houses::Houses()
     tail->price = 450000;
     tail->next = NULL;
     tail->previous = head;
+    head->next = tail;
 }
 
 Houses::~Houses()
